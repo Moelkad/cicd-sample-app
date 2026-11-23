@@ -10,7 +10,7 @@ pipeline {
         stage('Deploy Production (dmz010)') {
             steps {
                 sshagent(['dmz010-ssh']) {
-                    sh 'docker save sampleapp | ssh -o StrictHostKeyChecking=no admin@192.0.2.10 "docker load && docker rm -f sampleapp_prod || true && docker run -d --name sampleapp_prod -p 8000:5050 sampleapp"'
+                    sh 'docker save sampleapp | ssh -o StrictHostKeyChecking=no admin@192.0.2.10 "docker load && docker rm -f sampleapp_prod || true && docker run -d --name sampleapp_prod -p 8081:5050 sampleapp"'
                 }
             }
         }
